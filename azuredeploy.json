@@ -81,7 +81,7 @@
                             "id": "TESTROOTCERT",
                             "name": "string",
                             "properties": {
-                                "publicCertData": "MIIDTjCCAjagAwIBAgIQUNz7clj+i4lCsWff0Yr+2jANBgkqhkiG9w0BAQsFADAh MR8wHQYDVQQDDBZBQUFSb290Q2FzZUNvdW50TWFzdGVyMB4XDTIyMDEyMjE5MTg0 NFoXDTIzMDEyMjE5Mzg0M1owIjEgMB4GA1UEAwwXQUFBQ2hpbGRDYXNlQ291bnRN YXN0ZXIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCtEgVbGY5rW21D TgOWZ2xRSOa6x0KEy488YZ9QUC6EEi8or0sSVJ4RnNxJlr6l/iYTz4tMRJqBn+QU 7m23ofAPuFqD80uPPyR6DacYy6DAuvwrQmcNbsasGEXhZkE7+Jkb28s2LDcwQUZ9 s+cFp4t1OzLffwkCbGpcMK4aXrvJ6Fs3lwDeDjzXfV/Z9AjFgA2y2qxd1emrr68k Om/NaoAKiEt14jqgDXWltz+sMNztyDoeuu+YcmgI4Xz+VgUOOJwSSaD0OWb3YzUF XG/4+eZtOIkPWUDQ1Qb15dREvLtd1B4QgCQ9q9nSKqDbYHb63XlJnyns8um3sah7 ADnDzLNVAgMBAAGjgYAwfjAOBgNVHQ8BAf8EBAMCBaAwFwYDVR0RBBAwDoIMUDJT Q2hpbGRDZXJ0MBMGA1UdJQQMMAoGCCsGAQUFBwMCMB8GA1UdIwQYMBaAFNsr6NIv Aj1xKVudtVUGrX83DwgKMB0GA1UdDgQWBBRPCq2bgZFb543VGd5UGFKRothj/zAN BgkqhkiG9w0BAQsFAAOCAQEAtXCUQiSL/px8RNz8iDZ7pYCHWO4Cv55TKA1jdtg/ /vxfBw9Hz7qE+guLQ33Irv5Onl5WzYjoUCsBImKYm/SAieWE0v/gH05MEktylrsx 7zUO0v883fk/Amfz1ycrznr73xW+6JAcBx6K6m83NUIC0ee6ZP78+DsCtKXNo8Ng 4dex6zk/rb86Zyqrl1PiZzlDMoB/oNOn8ijMqV+gxBNhLDwy71FDSXyzF+QnDA7l 9SxFSV6nZq9gzuputVSMMye2Jxz6bXA/34oZSYObSrcyBJx7DT8xKWFy2Y+mPfP6 ZZaThIrznylk1BSh5H7IQQTEPuONj9V/9nnK2t028Wq6NA=="
+                                "publicCertData": ""
                             }
                         }
                     ]
