@@ -1,0 +1,152 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "name": {
+            "type": "String"
+        },
+        "location": {
+            "type": "String"
+        },
+        "gatewayType": {
+            "defaultValue": "Vpn",
+            "allowedValues": [
+                "Vpn",
+                "ExpressRoute"
+            ],
+            "type": "String"
+        },
+        "sku": {
+            "type": "String"
+        },
+        "vpnGatewayGeneration": {
+            "type": "String"
+        },
+        "vpnType": {
+            "defaultValue": "RouteBased",
+            "allowedValues": [
+                "RouteBased",
+                "PolicyBased"
+            ],
+            "type": "String"
+        },
+        "subnetId": {
+            "type": "String"
+        },
+        "newPublicIpAddressName": {
+            "type": "String"
+        }
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Network/virtualNetworkGateways",
+            "apiVersion": "2020-11-01",
+            "name": "[parameters('name')]",
+            "location": "[parameters('location')]",
+            "dependsOn": [
+                "Microsoft.Resources/deployments/TESTVNET-20220408194320",
+                "[concat('Microsoft.Network/publicIPAddresses/', parameters('newPublicIpAddressName'))]"
+            ],
+            "tags": {},
+            "properties": {
+                "gatewayType": "[parameters('gatewayType')]",
+                "ipConfigurations": [
+                    {
+                        "name": "default",
+                        "properties": {
+                            "privateIPAllocationMethod": "Dynamic",
+                            "subnet": {
+                                "id": "[parameters('subnetId')]"
+                            },
+                            "publicIpAddress": {
+                                "id": "[resourceId('TESTRG', 'Microsoft.Network/publicIPAddresses', parameters('newPublicIpAddressName'))]"
+                            }
+                        }
+                    }
+                ],
+                "vpnType": "[parameters('vpnType')]",
+                "vpnGatewayGeneration": "[parameters('vpnGatewayGeneration')]",
+                "sku": {
+                    "name": "[parameters('sku')]",
+                    "tier": "[parameters('sku')]"
+                },
+                "vpnClientConfiguration": {
+                    "vpnClientAddressPool": {
+                        "addressPrefixes": [
+                            "172.16.201.0/24"
+                        ]
+                    },
+                    "vpnClientRootCertificates": [
+                        {
+                            "id": "TESTROOTCERT",
+                            "name": "string",
+                            "properties": {
+                                "publicCertData": "MIIDTjCCAjagAwIBAgIQUNz7clj+i4lCsWff0Yr+2jANBgkqhkiG9w0BAQsFADAh MR8wHQYDVQQDDBZBQUFSb290Q2FzZUNvdW50TWFzdGVyMB4XDTIyMDEyMjE5MTg0 NFoXDTIzMDEyMjE5Mzg0M1owIjEgMB4GA1UEAwwXQUFBQ2hpbGRDYXNlQ291bnRN YXN0ZXIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCtEgVbGY5rW21D TgOWZ2xRSOa6x0KEy488YZ9QUC6EEi8or0sSVJ4RnNxJlr6l/iYTz4tMRJqBn+QU 7m23ofAPuFqD80uPPyR6DacYy6DAuvwrQmcNbsasGEXhZkE7+Jkb28s2LDcwQUZ9 s+cFp4t1OzLffwkCbGpcMK4aXrvJ6Fs3lwDeDjzXfV/Z9AjFgA2y2qxd1emrr68k Om/NaoAKiEt14jqgDXWltz+sMNztyDoeuu+YcmgI4Xz+VgUOOJwSSaD0OWb3YzUF XG/4+eZtOIkPWUDQ1Qb15dREvLtd1B4QgCQ9q9nSKqDbYHb63XlJnyns8um3sah7 ADnDzLNVAgMBAAGjgYAwfjAOBgNVHQ8BAf8EBAMCBaAwFwYDVR0RBBAwDoIMUDJT Q2hpbGRDZXJ0MBMGA1UdJQQMMAoGCCsGAQUFBwMCMB8GA1UdIwQYMBaAFNsr6NIv Aj1xKVudtVUGrX83DwgKMB0GA1UdDgQWBBRPCq2bgZFb543VGd5UGFKRothj/zAN BgkqhkiG9w0BAQsFAAOCAQEAtXCUQiSL/px8RNz8iDZ7pYCHWO4Cv55TKA1jdtg/ /vxfBw9Hz7qE+guLQ33Irv5Onl5WzYjoUCsBImKYm/SAieWE0v/gH05MEktylrsx 7zUO0v883fk/Amfz1ycrznr73xW+6JAcBx6K6m83NUIC0ee6ZP78+DsCtKXNo8Ng 4dex6zk/rb86Zyqrl1PiZzlDMoB/oNOn8ijMqV+gxBNhLDwy71FDSXyzF+QnDA7l 9SxFSV6nZq9gzuputVSMMye2Jxz6bXA/34oZSYObSrcyBJx7DT8xKWFy2Y+mPfP6 ZZaThIrznylk1BSh5H7IQQTEPuONj9V/9nnK2t028Wq6NA=="
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2017-05-10",
+            "name": "TESTVNET-20220408194320",
+            "dependsOn": [],
+            "properties": {
+                "mode": "Incremental",
+                "template": {
+                    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+                    "contentVersion": "1.0.0.0",
+                    "parameters": {},
+                    "variables": {},
+                    "resources": [
+                        {
+                            "name": "TESTVNET",
+                            "id": "/subscriptions/153bf828-3e1e-48f9-8e6d-7f69c8e188aa/resourceGroups/TESTRG/providers/Microsoft.Network/virtualNetworks/TESTVNET",
+                            "location": "southcentralus",
+                            "type": "Microsoft.Network/virtualNetworks",
+                            "properties": {
+                                "subnets": [
+                                    {
+                                        "id": "/subscriptions/153bf828-3e1e-48f9-8e6d-7f69c8e188aa/resourceGroups/TESTRG/providers/Microsoft.Network/virtualNetworks/TESTVNET/subnets/GatewaySubnet",
+                                        "name": "GatewaySubnet",
+                                        "properties": {
+                                            "addressPrefix": "10.0.0.0/24"
+                                        }
+                                    },
+                                    {
+                                        "name": "TESTSUBNET",
+                                        "id": "/subscriptions/153bf828-3e1e-48f9-8e6d-7f69c8e188aa/resourceGroups/TESTRG/providers/Microsoft.Network/virtualNetworks/TESTVNET/subnets/TESTSUBNET",
+                                        "properties": {
+                                            "addressPrefix": "10.0.1.0/24"
+                                        }
+                                    }
+                                ],
+                                "addressSpace": {
+                                    "addressPrefixes": [
+                                        "10.0.0.0/16"
+                                    ]
+                                }
+                            },
+                            "tags": {},
+                            "apiVersion": "2019-09-01",
+                            "dependsOn": []
+                        }
+                    ]
+                },
+                "parameters": {}
+            },
+            "resourceGroup": "TESTRG"
+        },
+        {
+            "type": "Microsoft.Network/publicIPAddresses",
+            "apiVersion": "2020-08-01",
+            "name": "[parameters('newPublicIpAddressName')]",
+            "location": "[parameters('location')]",
+            "properties": {
+                "publicIPAllocationMethod": "Dynamic"
+            }
+        }
+    ]
+}
