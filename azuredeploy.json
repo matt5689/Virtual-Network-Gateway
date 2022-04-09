@@ -79,7 +79,7 @@
                     "vpnClientRootCertificates": [
                         {
                             "id": "TESTROOTCERT",
-                            "name": "string",
+                            "name": "TESTROOTCERT",
                             "properties": {
                                 "publicCertData": ""
                             }
